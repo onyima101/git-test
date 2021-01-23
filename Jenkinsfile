@@ -1,9 +1,11 @@
 pipeline {
     agent any
-    
     stages {
         stage('One') {
             agent { label 'dev' }
+            steps{
+            }
+        }
 		    
     stages {
         stage('Two') {
