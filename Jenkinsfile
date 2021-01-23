@@ -1,12 +1,6 @@
 pipeline {
-    agent any
-    stages {
-        stage('One') {
-            agent { label 'dev' }
-            steps{
-            }
-        }
-		    
+    agent none
+    
     stages {
         stage('Two') {
                 steps {
