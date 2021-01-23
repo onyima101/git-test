@@ -34,7 +34,7 @@ pipeline {
                         agent {
                                 docker {
                                         reuseNode false
-					image 'onyima101/mynode:1.0' ##'onyima101/nginx-assessment:v1.2'##
+					image 'onyima101/mynode:1.0' 
                                         }
 			}
 				steps {
