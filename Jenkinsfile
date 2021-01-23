@@ -1,19 +1,24 @@
 pipeline {
     agent any
+    
     stages {
         stage('One') {
+            agent { label 'dev' }
+		    
+    stages {
+        stage('Two') {
                 steps {
                         echo 'Hi, this is Raymond from FDA'
 			
                 }
         }
-	    stage('Two'){
+	    stage('Three'){
 		    
 		steps {
 			input('Do you want to proceed?')
         }
 	    }
-        stage('Three') {
+        stage('Four') {
                 when {
                         not {
                                 branch "master"
@@ -23,7 +28,7 @@ pipeline {
 			echo "Hello"
                         }
         }
-        stage('Four') {
+        stage('Five') {
                 parallel {
                         stage('Unit Test') {
                                 steps{
