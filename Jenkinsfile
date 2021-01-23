@@ -1,13 +1,17 @@
+  
 pipeline {
     agent any
+
     stages {
-        stage('Build') {
+        stage('Input') {
             steps {
-                sh 'echo "Hello World"'
-                sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
-                '''
+                input('Do you want to proceed?')
+            }
+        }
+
+        stage('If Proceed is clicked') {
+            steps {
+                print('hello')
             }
         }
     }
