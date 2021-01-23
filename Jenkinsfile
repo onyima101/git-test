@@ -1,11 +1,47 @@
 pipeline {
-    agent { dockerfile true }
+    agent any
     stages {
-        stage('Test') {
-            steps {
-                sh 'node --version'
-                sh 'svn --version'
-            }
+        stage('One') {
+                steps {
+                        echo 'Hi, this is Raymond from FDA'
+			
+                }
+        }
+	    stage('Two'){
+		    
+		steps {
+			input('Do you want to proceed?')
+        }
+	    }
+        stage('Three') {
+                when {
+                        not {
+                                branch "master"
+                        }
+                }
+                steps {
+			echo "Hello"
+                        }
+        }
+        stage('Four') {
+                parallel {
+                        stage('Unit Test') {
+                                steps{
+                                        echo "Running the unit test..."
+                                }
+                        }
+                        stage('Integration test') {
+                        agent {
+                                docker {
+                                        reuseNode false
+					image 'onyima101/mynode:1.0' ##'onyima101/nginx-assessment:v1.2'##
+                                        }
+			}
+				steps {
+					echo 'Running the integration test..'
+				}
+                               
+			}  }
         }
     }
 }
